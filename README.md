@@ -20,7 +20,7 @@
 |image|text|null:false|
 |infomation|text|null:false|
 |condition|strig|null:false|
-|postage|string|null:faise|
+|postage|string|null:false|
 |prefecture|string|null:false|
 |delivery_day|string|null:false|
 |price|interger|null:false|
