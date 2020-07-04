@@ -9,12 +9,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :firstname_kana, null:false
       t.string :lastname, null:false
       t.string :lastname_kana, null:false
-      t.string :password,null:false, unique:true 
+      # t.string :password,null:false, unique:true, default:""
       t.string :email,              null: false, unique:true
       t.string :encrypted_password, null: false, default: ""
-      t.integer :birth_day,null:false
-      t.integer :birth_month,null:false
-      t.integer :birth_year,null:false
+      t.date :birthday,null:false
+      
 
       ## Recoverable
       t.string   :reset_password_token ## クレジット決済につかう
