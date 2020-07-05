@@ -59,3 +59,7 @@ gem 'devise'
 gem "haml-rails", "~> 2.0"
 gem 'active_hash'
 gem 'pry-rails'
+
+group :production do
+  gem 'rails_12factor'
+end
