@@ -9,14 +9,15 @@ class Item < ApplicationRecord
     belongs_to :user
 
     with_options presence: true do
-      validates :user_id
+      # validates :user_id
       validates :name
       validates :image
       validates :information
-      validates :prefecture
+      validates :prefecture_id
       validates :category_id, numericality: { other_than: 1 }
       validates :condition_id, numericality: { other_than: 1 }
       validates :delivery_id, numericality: { other_than: 1 }
-      validates :price
+      validates :postage_id,numericality: { other_than: 1 }
+      validates :price, numericality:{ greater_than_or_equal_to: 300, less_than: 9999999 }
     end
 end
