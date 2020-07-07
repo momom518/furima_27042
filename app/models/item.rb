@@ -7,9 +7,9 @@ class Item < ApplicationRecord
     belongs_to_active_hash :prefecture
     has_one_attached :image
     belongs_to :user
+    has_one :purchase
 
     with_options presence: true do
-      # validates :user_id
       validates :name
       validates :image
       validates :information
