@@ -3,6 +3,5 @@ Rails.application.routes.draw do
   root to: 'items#index'
   resources :items, only: [:index, :new, :edit, :show, :create]
   resources :purchase, only: [:new, :create]
-  # resources :users, only: [:new]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-end
+
+  end
