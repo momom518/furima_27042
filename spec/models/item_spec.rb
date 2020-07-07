@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   it 'is valid with a name, image, information, category, condition, delivery, postage, prefecture, price' do
     item = build(:item)
+    binding.pry
     expect(item).to be_valid
   end
 
