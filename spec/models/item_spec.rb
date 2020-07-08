@@ -64,10 +64,10 @@ RSpec.describe Item, type: :model do
     expect(@item.errors[:price]).to include("can't be blank")
   end
 
-  it 'is invalid price that has more than 10000000' do
+  it 'is invalid price that has more than 10,000,000' do
     @item.price = 10_000_000
     @item.valid?
-    expect(@item.errors[:price]).to include('must be less than 10000000')
+    expect(@item.errors[:price]).to include('must be less than or equal to 9999999')
   end
 
   it 'is invalid price that has less than 299' do
