@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:edit, :update, :show, :destroy]
   def index
     @items = Item.all
   end
@@ -11,8 +12,15 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  def update
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   def show
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -25,10 +33,9 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
     if item.destroy
       redirect_to root_path
-    else 
+    else
       render :show
     end
   end
@@ -47,6 +54,10 @@ class ItemsController < ApplicationController
       :postage_id,
       :price
     ).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
   def move_to_index
