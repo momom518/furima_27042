@@ -61,6 +61,8 @@ gem 'active_hash'
 gem 'pry-rails'
 gem 'active_hash'
 gem 'mini_magick'
+gem 'payjp'
+# gem 'webpacker', '~> 5.x'
 
 group :production do
   gem 'rails_12factor'
