@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Address, type: :model do
+RSpec.describe PurchaseForm, type: :model do
   before do
     @address = build(:address)
+    @user = create(:user)
   end
 
   it 'is valid with prefecture_id, city, house_number, building_name, telephone_number ' do
