@@ -4,7 +4,7 @@ class Address < ApplicationRecord
   belongs_to :purchase
   belongs_to_active_hash :prefecture
 
-  # addressモデルのテストコード用の記述↓
+  # フォームオブジェクトに書かれているバリデーションの挙動をテストで確認するためのコード（フォームオブジェクトに書かれているバリデーションと全く同じもの）
   # with_options presence: true do
   #   validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
   #   validates :prefecture_id

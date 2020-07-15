@@ -9,14 +9,19 @@ class PurchasesController < ApplicationController
 
   def create
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+
     @customer = Payjp::Customer.create(
       description: 'test',
       card: params[:card_token]
     )
     @purchase = PurchaseForm.new(purchase_params)
-    if @purchase.save
+
+    if @purchase.valid?
+      @purchase.save
       redirect_to root_path
     else
+      @item = Item.find(params[:item_id])
+      @purchase = PurchaseForm.new
       render :new
     end
   end

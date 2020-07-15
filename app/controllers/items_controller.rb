@@ -64,8 +64,4 @@ class ItemsController < ApplicationController
   def move_to_login
     redirect_to new_user_session_path unless user_signed_in?
   end
-
-  def move_to_root
-    redirect_to
-  end
 end
