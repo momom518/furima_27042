@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_011020) do
+ActiveRecord::Schema.define(version: 2020_07_12_063951) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2020_07_11_011020) do
   end
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postal_code"
-    t.integer "prefecture_id"
-    t.string "city"
-    t.string "house_number"
+    t.string "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "house_number", null: false
     t.string "building_name"
-    t.string "telephone_number"
+    t.integer "telephone_number", null: false
     t.bigint "user_id"
     t.bigint "purchase_id"
     t.datetime "created_at", precision: 6, null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_011020) do
     t.bigint "purchase_id"
     t.bigint "user_id"
     t.string "card_token", null: false
-    t.string "customer_token", null: false
+    t.string "customer_token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["purchase_id"], name: "index_cards_on_purchase_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_07_11_011020) do
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id"
     t.string "name", null: false
     t.text "information", null: false
     t.integer "category_id", null: false
@@ -71,15 +71,14 @@ ActiveRecord::Schema.define(version: 2020_07_11_011020) do
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
-    t.bigint "card_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_purchases_on_card_id"
     t.index ["item_id"], name: "index_purchases_on_item_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
@@ -103,6 +102,10 @@ ActiveRecord::Schema.define(version: 2020_07_11_011020) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "purchases"
+  add_foreign_key "addresses", "users"
   add_foreign_key "cards", "purchases"
   add_foreign_key "cards", "users"
+  add_foreign_key "purchases", "items"
+  add_foreign_key "purchases", "users"
 end
