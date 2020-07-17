@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :show, :destroy]
   before_action :move_to_login, except: [:index, :show]
+  before_action :move_to_root, only: [:edit, :destroy, :update]
 
   def index
     @items = Item.all
@@ -64,4 +65,9 @@ class ItemsController < ApplicationController
   def move_to_login
     redirect_to new_user_session_path unless user_signed_in?
   end
+
+  def move_to_root
+    redirect_to root_path unless @item.user.id == current_user.id
+  end
+
 end
