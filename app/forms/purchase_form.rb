@@ -13,7 +13,7 @@ class PurchaseForm
                 :customer_token
 
   with_options presence: true do
-    validates :prefecture_id
+    validates :prefecture_id, numericality: { other_than: 1 }
     validates :city
     validates :house_number
     validates :customer_token
